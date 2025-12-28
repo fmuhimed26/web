@@ -3,521 +3,579 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>مرجع CSS و JavaScript</title>
+  <title>مرجع سريع: شرح مبسّط لـ CSS (مع أمثلة مكمّلة للألوان)</title>
   <style>
-    :root {
-      --bg: #0f172a;
-      --card: #111827;
-      --text: #e5e7eb;
-      --muted: #94a3b8;
-      --accent: #38bdf8;
-      --accent-2: #22c55e;
-      --border: #1f2937;
-      --code-bg: #0b1020;
-      --heading: #fff;
+    :root{
+      --bg:#0f172a;
+      --card:#111827;
+      --text:#e5e7eb;
+      --muted:#94a3b8;
+      --accent:#38bdf8;
+      --accent-2:#22c55e;
+      --border:#1f2937;
+      --code-bg:#0b1020;
+      --heading:#fff;
     }
-    * { box-sizing: border-box; }
-    html, body {
-      margin: 0; padding: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: "Cairo", "Segoe UI", system-ui, sans-serif;
-      line-height: 1.8;
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:"Cairo","Segoe UI",system-ui,-apple-system,Arial,sans-serif;line-height:1.7}
+    a{color:var(--accent);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .container{max-width:1100px;margin:0 auto;padding:24px}
+    header{padding:24px 0 0 0}
+    h1{font-size:2rem;margin:0;color:var(--heading)}
+    .lead{color:var(--muted);margin-top:8px}
+    .nav{
+      display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 28px;
     }
-    a { color: var(--accent); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    .container { max-width: 1100px; margin: auto; padding: 24px; }
-    header { padding: 24px 0 0; }
-    h1 { font-size: 2rem; margin: 0; color: var(--heading); }
-    .lead { color: var(--muted); margin-top: 8px; }
-    .nav {
-      display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 28px;
+    .nav a{
+      background:var(--card);border:1px solid var(--border);padding:8px 12px;border-radius:10px;color:var(--text);font-size:.95rem;
     }
-    .nav a {
-      background: var(--card); border: 1px solid var(--border);
-      padding: 8px 12px; border-radius: 10px;
-      color: var(--text); font-size: .95rem;
+    section{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:18px;
+      margin:16px 0;
     }
-    section {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 18px;
-      margin-bottom: 24px;
+    h2{margin:0 0 12px 0;font-size:1.35rem;color:var(--heading)}
+    h3{margin:16px 0 8px 0;font-size:1.1rem;color:var(--heading)}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+    .card{
+      background:#0e1527;border:1px solid var(--border);border-radius:12px;padding:12px
     }
-    h2 { margin: 0 12px 12px; font-size: 1.5rem; color: var(--heading); }
-    h3 { margin: 16px 0 8px; font-size: 1.1rem; color: var(--heading); }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 12px;
+    .table{width:100%;border-collapse:collapse;margin-top:8px}
+    .table th,.table td{border:1px solid var(--border);padding:8px;text-align:right;font-size:.95rem}
+    .table th{background:#0e1527;color:#cbd5e1}
+    .k{color:#93c5fd} /* keywords / properties */
+    .v{color:#86efac} /* values */
+    .sel{color:#fca5a5} /* selectors */
+    .code{
+      background:var(--code-bg);
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:12px;
+      overflow:auto;
+      direction:ltr;
+      text-align:left;
+      font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size:.95rem;
+      line-height:1.6;
+      color:#e6edf3;
     }
-    .card {
-      background: #0e1527;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 12px;
+    .note{color:var(--muted);font-size:.95rem}
+    .pill{
+      display:inline-block;background:#0e1527;border:1px solid var(--border);
+      color:#cbd5e1;border-radius:999px;padding:4px 10px;margin:0 6px 6px 0;font-size:.9rem
     }
-    .table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 8px;
+    .demo-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+    .swatch{
+      width:80px;height:40px;border-radius:8px;border:1px solid var(--border)
     }
-    .table th, .table td {
-      border: 1px solid var(--border);
-      padding: 8px;
-      text-align: right;
-      font-size: .95rem;
+    .legend{font-size:.9rem;color:#cbd5e1}
+    .box-model{
+      display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start
     }
-    .table th {
-      background: #0e1527;
-      color: #cbd5e1;
+    .bm-diagram{
+      --c:#1f2937;--p:#334155;--b:#475569;--m:#64748b;
+      display:grid;place-items:center;height:220px;border-radius:12px;background:#0b1222;position:relative
     }
-    .code {
-      background: var(--code-bg);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 12px;
-      overflow: auto;
-      direction: ltr;
-      text-align: left;
-      font-family: monospace;
-      font-size: .95rem;
-      line-height: 1.6;
-      color: #6ee6f3;
-      margin: 8px 0;
+    .bm-layer{position:absolute;border-radius:10px}
+    .bm-margin{inset:10px;border:2px dashed var(--m)}
+    .bm-border{inset:30px;border:2px solid var(--b)}
+    .bm-padding{inset:50px;border:2px solid var(--p)}
+    .bm-content{inset:70px;background:#0f172a;border:1px solid var(--c);display:flex;align-items:center;justify-content:center;color:#cbd5e1}
+    .kbd{
+      background:#0e1527;border:1px solid var(--border);padding:2px 6px;border-radius:6px;font-size:.85rem;color:#cbd5e1
     }
-    .note {
-      color: var(--muted);
-      font-size: .95rem;
-    }
-    .pill {
-      display: inline-block;
-      background: #0e1527;
-      border: 1px solid var(--border);
-      color: #cbd5e1;
-      border-radius: 999px;
-      padding: 4px 10px;
-      margin: 0 6px 6px 0;
-      font-size: .9rem;
-    }
+    footer{color:#94a3b8;text-align:center;padding:24px 0}
   </style>
 </head>
 <body>
-<div class="container">
-<header>
-  <h1>📘 مرجع CSS و JavaScript</h1>
-  <p class="lead">صفحة تعليمية منظمة تحتوي على شرح مبسط وموسع لأهم مفاهيم CSS و JavaScript، مع أمثلة توضيحية.</p>
-</header>
+  <div class="container">
+    <header>
+      <h1>مرجع مبسّط لـ CSS مع أمثلة توضيحية</h1>
+      <p class="lead">هذه الصفحة تجمع الشرح الظاهر في الصور بشكل منظم، مع توسعة عملية لقسم الألوان.
+         افتحها مباشرة في المتصفح لترى الشرح فقط، بدون أكواد تطبيقية تعمل تلقائيًا.</p>
+    </header>
 
-<nav class="nav" aria-label="تنقل الأقسام">
-  <a href="#css-selectors">المحددات</a>
-  <a href="#css-comments">التعليقات</a>
-  <a href="#css-priority">أولوية CSS</a>
-  <a href="#css-fonts">الخطوط</a>
-  <a href="#css-lists-text">القوائم + النص</a>
-  <a href="#css-margins-colors">الهوامش + الألوان</a>
-  <a href="#css-backgrounds-borders">الخلفيات + الحدود</a>
-  <a href="#css-box-model">نموذج الصندوق</a>
-  <a href="#css-display">العرض</a>
-  <a href="#js-where">أين نكتب JS</a>
-  <a href="#js-output">نتائج JS</a>
-  <a href="#js-comments">تعليقات JS</a>
-  <a href="#js-types">أنواع البيانات</a>
-  <a href="#js-typeof">typeof + الأس</a>
-  <a href="#js-objects">الكائنات + التحويل</a>
-  <a href="#js-operators">المعاملات</a>
-  <a href="#js-logic">المقارنات + المنطق</a>
-  <a href="#js-conditionals">التفرعات</a>
-  <a href="#js-loops">الحلقات</a>
-  <a href="#js-dom">DOM التعديل على العناصر</a>
-</nav>
-<section id="css-selectors">
-  <h2>CSS: المحددات Selectors</h2>
-  <div class="grid">
-    <div class="card">
-      <h3>عنصر Element</h3>
-      <p class="note">ينسّق كل عناصر من نفس النوع.</p>
-      <div class="code">p { color:red; }</div>
-    </div>
-    <div class="card">
-      <h3>معرّف ID</h3>
-      <p class="note">يطبّق على عنصر واحد فقط.</p>
-      <div class="code">#box { width:100px; }</div>
-    </div>
-    <div class="card">
-      <h3>صنف Class</h3>
-      <p class="note">يمكن تطبيقه على عناصر متعددة.</p>
-      <div class="code">.title { font-size:20px; }</div>
-    </div>
-    <div class="card">
-      <h3>شامل Universal</h3>
-      <p class="note">يطال كل العناصر.</p>
-      <div class="code">* { margin:0; }</div>
-    </div>
-  </div>
-</section>
+    <nav class="nav" aria-label="تنقل الأقسام">
+      <a href="#selectors">المحددات Selectors</a>
+      <a href="#comments">التعليقات Comments</a>
+      <a href="#priority-fonts">أولوية CSS + الخطوط</a>
+      <a href="#lists-text">القوائم + النص</a>
+      <a href="#margins-colors">الهوامش + الألوان (موسّع)</a>
+      <a href="#backgrounds-borders">الخلفيات + الحدود</a>
+      <a href="#size-display">الحجم/الموقع + العرض</a>
+      <a href="#box-model">نموذج الصندوق</a>
+      <a href="#js-dom">تعديل عناصر HTML (JS)</a>
+      <a href="#js-where">أين نكتب JS</a>
+      <a href="#js-output-comments">نتائج + التعليقات</a>
+      <a href="#data-types-typeof-expo">أنواع البيانات + typeof + الأسّي</a>
+      <a href="#objects-conversion">الكائنات + التحويل</a>
+      <a href="#operators">المعاملات</a>
+      <a href="#comparisons-logic">المقارنات + المنطق</a>
+      <a href="#conditionals">التفرّعات</a>
+      <a href="#loops">الحلقات</a>
+    </nav>
 
-<section id="css-comments">
-  <h2>CSS: التعليقات Comments</h2>
-  <div class="code">/* هذا تعليق */</div>
-</section>
-
-<section id="css-priority">
-  <h2>CSS: أولوية الأنماط</h2>
-  <ul>
-    <li><span class="pill">Inline</span> أقوى</li>
-    <li><span class="pill">ID</span></li>
-    <li><span class="pill">Class</span></li>
-    <li><span class="pill">Element</span> أضعف</li>
-  </ul>
-  <div class="code">&lt;p style="color:red"&gt;نص&lt;/p&gt;</div>
-</section>
-
-<section id="css-fonts">
-  <h2>CSS: الخطوط Fonts</h2>
-  <table class="table">
-    <thead><tr><th>الخاصية</th><th>الوظيفة</th><th>مثال</th></tr></thead>
-    <tbody>
-      <tr><td>font-family</td><td>نوع الخط</td><td><span class="code">font-family: Arial;</span></td></tr>
-      <tr><td>font-size</td><td>حجم الخط</td><td><span class="code">font-size: 20px;</span></td></tr>
-      <tr><td>font-weight</td><td>سماكة</td><td><span class="code">font-weight: bold;</span></td></tr>
-      <tr><td>font-style</td><td>مائل</td><td><span class="code">font-style: italic;</span></td></tr>
-    </tbody>
-  </table>
-</section>
-
-<section id="css-lists-text">
-  <h2>CSS: القوائم + النص</h2>
-  <div class="grid">
-    <div class="card">
-      <h3>القوائم Lists</h3>
-      <table class="table">
-        <thead><tr><th>الخاصية</th><th>الوظيفة</th><th>مثال</th></tr></thead>
-        <tbody>
-          <tr><td>list-style-type</td><td>شكل التعداد</td><td>circle / square / decimal</td></tr>
-          <tr><td>list-style-image</td><td>صورة بدل الرمز</td><td>url("a.png")</td></tr>
-          <tr><td>list-style-position</td><td>موضع الرمز</td><td>inside / outside</td></tr>
-          <tr><td>list-style</td><td>اختصار</td><td>square inside</td></tr>
-          <tr><td>none</td><td>إزالة التعداد</td><td>list-style-type:none</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="card">
-      <h3>النص Text</h3>
-      <table class="table">
-        <thead><tr><th>الخاصية</th><th>الوظيفة</th><th>مثال</th></tr></thead>
-        <tbody>
-          <tr><td>color</td><td>لون النص</td><td><span class="code">color: red;</span></td></tr>
-          <tr><td>text-align</td><td>محاذاة</td><td>center</td></tr>
-          <tr><td>text-decoration</td><td>زخرفة</td><td>underline</td></tr>
-          <tr><td>text-transform</td><td>تحويل الحروف</td><td>uppercase</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<section id="css-margins-colors">
-  <h2>CSS: الهوامش + الألوان (شرح موسّع)</h2>
-  <div class="grid">
-    <div class="card">
-      <h3>Margins الهوامش</h3>
-      <table class="table">
-        <thead><tr><th>الخاصية</th><th>الوظيفة</th><th>مثال</th></tr></thead>
-        <tbody>
-          <tr><td>margin</td><td>هامش خارجي</td><td><span class="code">margin: 10px;</span></td></tr>
-          <tr><td>margin-top</td><td>أعلى</td><td><span class="code">margin-top: 20px;</span></td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="card">
-      <h3>Colors الألوان</h3>
-      <table class="table">
-        <thead><tr><th>الطريقة</th><th>مثال</th></tr></thead>
-        <tbody>
-          <tr><td>اسم اللون</td><td>red</td></tr>
-          <tr><td>HEX</td><td>#ff0000</td></tr>
-          <tr><td>RGB</td><td>rgb(255,0,0)</td></tr>
-        </tbody>
-      </table>
-      <h3>مثال عملي:</h3>
-      <div class="code">
-        p {<br>
-          color: rgb(0,128,255); /* أزرق متوسط */<br>
-          background-color: #f0f0f0; /* خلفية رمادية */<br>
-        }
-      </div>
-    </div>
-  </div>
-</section>
-<section id="css-backgrounds-borders">
-  <h2>CSS: الخلفيات + الحدود</h2>
-  <div class="grid">
-    <div class="card">
-      <h3>Backgrounds الخلفيات</h3>
-      <table class="table">
-        <thead><tr><th>الخاصية</th><th>الوظيفة</th><th>مثال</th></tr></thead>
-        <tbody>
-          <tr><td>background-color</td><td>لون خلفية</td><td>yellow</td></tr>
-          <tr><td>background-image</td><td>صورة</td><td>url("a.jpg")</td></tr>
-          <tr><td>background-repeat</td><td>تكرار</td><td>no-repeat</td></tr>
-          <tr><td>background-size</td><td>الحجم</td><td>cover</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="card">
-      <h3>Borders الحدود</h3>
-      <table class="table">
-        <thead><tr><th>الخاصية</th><th>الوظيفة</th><th>مثال</th></tr></thead>
-        <tbody>
-          <tr><td>border</td><td>حد كامل</td><td>1px solid black</td></tr>
-          <tr><td>border-radius</td><td>تدوير</td><td>10px</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<section id="css-display">
-  <h2>CSS: الحجم + العرض</h2>
-  <div class="grid">
-    <div class="card">
-      <h3>Size & Position</h3>
-      <table class="table">
-        <thead><tr><th>الخاصية</th><th>الوظيفة</th><th>مثال</th></tr></thead>
-        <tbody>
-          <tr><td>width</td>
-                      <tr><td>width</td><td>العرض</td><td>200px</td></tr>
-          <tr><td>height</td><td>الارتفاع</td><td>100px</td></tr>
-          <tr><td>position</td><td>الموضع</td><td>relative / absolute</td></tr>
-          <tr><td>top</td><td>الإزاحة</td><td>top:10px</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="card">
-      <h3>Display العرض</h3>
-      <table class="table">
-        <thead><tr><th>القيمة</th><th>الوظيفة</th></tr></thead>
-        <tbody>
-          <tr><td>block</td><td>عنصر كتلة</td></tr>
-          <tr><td>inline</td><td>عنصر سطري</td></tr>
-          <tr><td>none</td><td>إخفاء</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<section id="css-box-model">
-  <h2>CSS: نموذج الصندوق Box Model</h2>
-  <table class="table">
-    <thead><tr><th>الخاصية</th><th>الوظيفة</th></tr></thead>
-    <tbody>
-      <tr><td>المحتوى</td><td>content</td></tr>
-      <tr><td>المسافة الداخلية</td><td>padding</td></tr>
-      <tr><td>الحد</td><td>border</td></tr>
-      <tr><td>الهامش</td><td>margin</td></tr>
-    </tbody>
-  </table>
-</section>
-<section id="js-where">
-  <h2>JS: أين نكتب JavaScript</h2>
-  <table class="table">
-    <thead><tr><th>المكان</th><th>الصيغة</th><th>ملاحظة</th></tr></thead>
-    <tbody>
-      <tr><td>داخل body</td><td><span class="code">&lt;script&gt;...&lt;/script&gt;</span></td><td>شائع</td></tr>
-      <tr><td>داخل head</td><td><span class="code">&lt;script&gt;...&lt;/script&gt;</span></td><td>ممكن</td></tr>
-      <tr><td>ملف خارجي</td><td><span class="code">&lt;script src="a.js"&gt;&lt;/script&gt;</span></td><td>الأفضل</td></tr>
-      <tr><td>آخر body</td><td>—</td><td>أسرع تحميل</td></tr>
-    </tbody>
-  </table>
-</section>
-
-<section id="js-output">
-  <h2>JS: طرق إظهار النتائج</h2>
-  <table class="table">
-    <thead><tr><th>الطريقة</th><th>الاستخدام</th><th>مثال</th></tr></thead>
-    <tbody>
-      <tr><td>innerHTML</td><td>داخل عنصر HTML</td><td><span class="code">element.innerHTML = "Hello";</span></td></tr>
-      <tr><td>document.write()</td><td>كتابة بالصفحة</td><td><span class="code">document.write(5+5);</span></td></tr>
-      <tr><td>alert()</td><td>رسالة منبثقة</td><td><span class="code">alert("Hi");</span></td></tr>
-      <tr><td>console.log()</td><td>فحص الأخطاء</td><td><span class="code">console.log(10);</span></td></tr>
-      <tr><td>window.print()</td><td>طباعة الصفحة</td><td><span class="code">window.print();</span></td></tr>
-    </tbody>
-  </table>
-</section>
-
-<section id="js-comments">
-  <h2>JS: التعليقات</h2>
-  <table class="table">
-    <thead><tr><th>النوع</th><th>الصيغة</th></tr></thead>
-    <tbody>
-      <tr><td>تعليق سطر</td><td><span class="code">// تعليق</span></td></tr>
-      <tr><td>تعليق متعدد</td><td><span class="code">/* تعليق */</span></td></tr>
-    </tbody>
-  </table>
-</section>
-
-<section id="js-types">
-  <h2>JS: أنواع البيانات</h2>
-  <table class="table">
-    <thead><tr><th>النوع</th><th>المثال</th></tr></thead>
-    <tbody>
-      <tr><td>String</td><td><span class="code">"Ali"</span></td></tr>
-      <tr><td>Number</td><td><span class="code">10</span></td></tr>
-      <tr><td>Boolean</td><td><span class="code">true</span></td></tr>
-      <tr><td>Array</td><td><span class="code">["A","B"]</span></td></tr>
-      <tr><td>Object</td><td><span class="code">{ "name":"Ali" }</span></td></tr>
-      <tr><td>Undefined</td><td><span class="code">let x;</span></td></tr>
-      <tr><td>Null</td><td><span class="code">null</span></td></tr>
-    </tbody>
-  </table>
-</section>
-
-<section id="js-typeof">
-  <h2>JS: typeof + الصيغة الأسّية</h2>
-  <div class="grid">
-    <div class="card">
-      <h3>typeof Operator</h3>
-      <table class="table">
-        <thead><tr><th>التعبير</th><th>النتيجة</th></tr></thead>
-        <tbody>
-          <tr><td><span class="code">typeof "Ali"</span></td><td>string</td></tr>
-          <tr><td><span class="code">typeof 10</span></td><td>number</td></tr>
-          <tr><td><span class="code">typeof true</span></td><td>boolean</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="card">
-      <h3>Exponential Notation</h3>
-      <table class="table">
-        <thead><tr><th>الصيغة</th><th>النتيجة</th></tr></thead>
-        <tbody>
-          <tr><td><span class="code">123e5</span></td><td>12300000</td></tr>
-          <tr><td><span class="code">123e-5</span></td><td>0.00123</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-<section id="js-objects">
-  <h2>JS: الكائنات + التحويل</h2>
-  <div class="grid">
-    <div class="card">
-      <h3>Objects</h3>
-      <div class="code">let person = { name:"Ali", age:20 };</div>
-    </div>
-    <div class="card">
-      <h3>Type Conversion</h3>
-      <table class="table">
-        <thead><tr><th>التحويل</th><th>المثال</th><th>النتيجة</th></tr></thead>
-        <tbody>
-          <tr><td>String → Number</td><td><span class="code">Number("3.5")</span></td><td>3.5</td></tr>
-          <tr><td>String → Integer</td><td><span class="code">parseInt("10")</span></td><td>10</td></tr>
-          <tr><td>Number → String</td><td><span class="code">String(10)</span></td><td>"10"</td></tr>
-          <tr><td>Boolean → Number</td><td><span class="code">Number(true)</span></td><td>1</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<section id="js-operators">
-  <h2>JS: المعاملات</h2>
-  <div class="grid">
+    <section id="selectors">
+      <h2>المحددات Selectors</h2>
+      <div class="grid">
         <div class="card">
-      <h3>Arithmetic Operators معاملات حسابية</h3>
-      <ul>
-        <li><span class="pill">+</span> <span class="pill">-</span> <span class="pill">*</span> <span class="pill">/</span> <span class="pill">%</span></li>
-        <li>الزيادة/النقصان: <span class="pill">++</span> <span class="pill">--</span></li>
-        <li>الأس: <span class="pill">**</span></li>
-      </ul>
-    </div>
-    <div class="card">
-      <h3>Assignment Operators معاملات الإسناد</h3>
-      <ul>
-        <li><span class="pill">=</span> مثال: <span class="code">x = 5</span></li>
-        <li><span class="pill">+=</span> مثال: <span class="code">x += 2</span></li>
-        <li><span class="pill">-=</span> مثال: <span class="code">x -= 2</span></li>
-      </ul>
-    </div>
-  </div>
-</section>
+          <h3>عنصر Element</h3>
+          <p class="note">ينسّق كل عناصر من نفس النوع.</p>
+          <div class="code"><span class="sel">p</span> { <span class="k">color</span>: <span class="v">red</span>; }</div>
+        </div>
+        <div class="card">
+          <h3>معرّف ID</h3>
+          <p class="note">يطبّق على عنصر واحد فريد في الصفحة.</p>
+          <div class="code"><span class="sel">#box</span> { <span class="k">width</span>: <span class="v">100px</span>; }</div>
+        </div>
+        <div class="card">
+          <h3>صنف Class</h3>
+          <p class="note">يمكن تطبيقه على عناصر متعددة.</p>
+          <div class="code"><span class="sel">.title</span> { <span class="k">font-size</span>: <span class="v">20px</span>; }</div>
+        </div>
+        <div class="card">
+          <h3>شامل Universal</h3>
+          <p class="note">يطال كل العناصر في الصفحة.</p>
+          <div class="code"><span class="sel">*</span> { <span class="k">margin</span>: <span class="v">0</span>; }</div>
+        </div>
+      </div>
+    </section>
 
-<section id="js-logic">
-  <h2>JS: المقارنات + المنطق</h2>
-  <div class="grid">
-    <div class="card">
-      <h3>Comparison Operators</h3>
+    <section id="comments">
+      <h2>التعليقات Comments</h2>
+      <p class="note">تُستخدم لشرح الكود دون التأثير على التنفيذ.</p>
+      <div class="code">/* هذا تعليق */</div>
+    </section>
+
+    <section id="priority-fonts">
+      <h2>أولوية CSS + الخطوط</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>أولوية الأنماط CSS Priority</h3>
+          <ul>
+            <li><span class="pill">Inline</span> أقوى</li>
+            <li><span class="pill">ID</span></li>
+            <li><span class="pill">Class</span></li>
+            <li><span class="pill">Element</span> أضعف</li>
+          </ul>
+          <div class="code">&lt;p style="color:red"&gt;نص&lt;/p&gt;</div>
+        </div>
+        <div class="card">
+          <h3>الخطوط Fonts</h3>
+          <table class="table">
+            <thead><tr><th>الخاصية</th><th>الوظيفة</th><th>مثال</th></tr></thead>
+            <tbody>
+              <tr><td>font-family</td><td>نوع الخط</td><td><span class="code">font-family: Arial;</span></td></tr>
+              <tr><td>font-size</td><td>حجم الخط</td><td><span class="code">font-size: 20px;</span></td></tr>
+              <tr><td>font-weight</td><td>سماكة</td><td><span class="code">font-weight: bold;</span></td></tr>
+              <tr><td>font-style</td><td>مائل</td><td><span class="code">font-style: italic;</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="lists-text">
+      <h2>القوائم Lists + النص Text</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Lists القوائم</h3>
+          <table class="table">
+            <thead><tr><th>الخاصية</th><th>الوظيفة</th><th>مثال</th></tr></thead>
+            <tbody>
+              <tr><td>list-style-type</td><td>شكل التعداد</td><td>circle / square / decimal</td></tr>
+              <tr><td>list-style-image</td><td>صورة بدل الرمز</td><td>url("a.png")</td></tr>
+              <tr><td>list-style-position</td><td>موقع الرمز</td><td>inside / outside</td></tr>
+              <tr><td>list-style</td><td>اختصار</td><td>square inside</td></tr>
+              <tr><td>none</td><td>إزالة التعداد</td><td>list-style-type:none</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card">
+          <h3>Text النص</h3>
+          <table class="table">
+            <thead><tr><th>الخاصية</th><th>الوظيفة</th><th>مثال</th></tr></thead>
+            <tbody>
+              <tr><td>color</td><td>لون النص</td><td><span class="code">color: red;</span></td></tr>
+              <tr><td>text-align</td><td>محاذاة</td><td>center</td></tr>
+              <tr><td>text-decoration</td><td>زخرفة (تسطير)</td><td>underline</td></tr>
+              <tr><td>text-transform</td><td>تحويل الحروف</td><td>uppercase</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="margins-colors">
+      <h2>الهوامش Margins + الألوان Colors (شرح موسّع)</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Margins الهوامش</h3>
+          <table class="table">
+            <thead><tr><th>الخاصية</th><th>الوظيفة</th><th>مثال</th></tr></thead>
+            <tbody>
+              <tr><td>margin</td><td>هامش خارجي</td><td><span class="code">margin: 10px;</span></td></tr>
+              <tr><td>margin-top</td><td>أعلى</td><td><span class="code">margin-top: 20px;</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card">
+          <h3>Colors الألوان — الطرق الأساسية</h3>
+          <table class="table">
+            <thead><tr><th>الطريقة</th><th>مثال</th></tr></thead>
+            <tbody>
+              <tr><td>اسم اللون</td><td>red</td></tr>
+              <tr><td>HEX</td><td>#ff0000</td></tr>
+              <tr><td>RGB</td><td>rgb(255, 0, 0)</td></tr>
+            </tbody>
+          </table>
+
+          <h3>شرح موسّع مع أمثلة بصرية</h3>
+          <p class="note">
+            - اسم اللون يستخدم مجموعة محدودة من الأسماء القياسية (مثل red, blue, green).<br>
+            - HEX يمثّل اللون بستة أرقام سداسية عشرية: زوج للأحمر، زوج للأخضر، زوج للأزرق.<br>
+            - RGB يحدّد المكوّنات بالأرقام من 0 إلى 255 لكل من الأحمر والأخضر والأزرق.
+          </p>
+
+          <div class="demo-row">
+            <div>
+              <div class="swatch" style="background:red"></div>
+              <div class="legend">اسم اللون: red</div>
+            </div>
+            <div>
+              <div class="swatch" style="background:#ff0000"></div>
+              <div class="legend">HEX: #ff0000</div>
+            </div>
+            <div>
+              <div class="swatch" style="background:rgb(255,0,0)"></div>
+              <div class="legend">RGB: rgb(255,0,0)</div>
+            </div>
+          </div>
+
+          <h3>عن الشفافية: RGBA و HEX مع ألفا</h3>
+          <p class="note">يمكن إضافة قناة ألفا للشفافية: في RGB عبر rgba(r,g,b,a) حيث a بين 0 و 1، وفي HEX بإضافة زوجين للألفا مثل #RRGGBBAA.</p>
+          <div class="demo-row">
+            <div>
+              <div class="swatch" style="background:rgba(255,0,0,0.5)"></div>
+              <div class="legend">rgba(255,0,0,0.5)</div>
+            </div>
+            <div>
+              <div class="swatch" style="background:#ff000080"></div>
+              <div class="legend">#ff000080</div>
+            </div>
+          </div>
+
+          <h3>تدرّج لوني بسيط</h3>
+          <div class="swatch" style="width:240px;background:linear-gradient(90deg, #ff0000, #00ff00, #0000ff)"></div>
+          <div class="legend">linear-gradient(90deg, #ff0000, #00ff00, #0000ff)</div>
+
+          <h3>مثال كود يوضّح الفروقات</h3>
+          <div class="code">
+/* نفس اللون الأحمر بثلاث طرق مختلفة */<br>
+.title-by-name { color: red; }<br>
+.title-by-hex  { color: #ff0000; }<br>
+.title-by-rgb  { color: rgb(255, 0, 0); }<br><br>
+/* إضافة شفافية */<br>
+.title-by-rgba { color: rgba(255, 0, 0, 0.6); }<br>
+.title-by-hex-a{ color: #ff000099; } /* حوالي 60% شفافية */
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="backgrounds-borders">
+      <h2>الخلفيات Backgrounds + الحدود Borders</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Backgrounds الخلفيات</h3>
+          <table class="table">
+            <thead><tr><th>الخاصية</th><th>الوظيفة</th><th>مثال</th></tr></thead>
+            <tbody>
+              <tr><td>background-color</td><td>لون خلفية</td><td>yellow</td></tr>
+              <tr><td>background-image</td><td>صورة</td><td>url("a.jpg")</td></tr>
+              <tr><td>background-repeat</td><td>تكرار</td><td>no-repeat</td></tr>
+              <tr><td>background-size</td><td>الحجم</td><td>cover</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card">
+          <h3>Borders الحدود</h3>
+          <table class="table">
+            <thead><tr><th>الخاصية</th><th>الوظيفة</th><th>مثال</th></tr></thead>
+            <tbody>
+              <tr><td>border</td><td>حد كامل</td><td>1px solid black</td></tr>
+              <tr><td>border-radius</td><td>تدوير</td><td>10px</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="size-display">
+      <h2>الحجم والموقع Size & Position + العرض Display</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Size & Position</h3>
+          <table class="table">
+            <thead><tr><th>الخاصية</th><th>الوظيفة</th><th>مثال</th></tr></thead>
+            <tbody>
+              <tr><td>width</td><td>العرض</td><td>200px</td></tr>
+              <tr><td>height</td><td>الارتفاع</td><td>100px</td></tr>
+              <tr><td>position</td><td>التموضع</td><td>relative / absolute</td></tr>
+              <tr><td>top</td><td>إزاحة</td><td>top:10px</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card">
+          <h3>Display العرض</h3>
+          <table class="table">
+            <thead><tr><th>القيمة</th><th>الوظيفة</th></tr></thead>
+            <tbody>
+              <tr><td>block</td><td>عنصر كتلوي</td></tr>
+              <tr><td>inline</td><td>سطري</td></tr>
+              <tr><td>none</td><td>إخفاء</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="box-model">
+      <h2>نموذج الصندوق Box Model</h2>
+      <div class="box-model">
+        <div class="card">
+          <table class="table">
+            <thead><tr><th>الوظيفة</th><th>الخاصية</th></tr></thead>
+            <tbody>
+              <tr><td>المحتوى</td><td>content</td></tr>
+              <tr><td>مسافة داخلية</td><td>padding</td></tr>
+              <tr><td>الحد</td><td>border</td></tr>
+              <tr><td>مسافة خارجية</td><td>margin</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="bm-diagram card" aria-label="رسم توضيحي لنموذج الصندوق">
+          <div class="bm-layer bm-margin"></div>
+          <div class="bm-layer bm-border"></div>
+          <div class="bm-layer bm-padding"></div>
+          <div class="bm-layer bm-content">content</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="js-dom">
+      <h2>JS: التعديل على عناصر HTML</h2>
       <table class="table">
-        <thead><tr><th>المعامل</th><th>الوظيفة</th></tr></thead>
+        <thead><tr><th>المطلوب</th><th>الأمر</th><th>الوظيفة</th><th>مثال</th></tr></thead>
         <tbody>
-          <tr><td>==</td><td>مساواة</td></tr>
-          <tr><td>===</td><td>قيمة + نوع</td></tr>
-          <tr><td>!=</td><td>لا يساوي</td></tr>
-          <tr><td>&gt;</td><td>مقارنة أكبر</td></tr>
+          <tr>
+            <td>تغيير محتوى عنصر</td><td>innerHTML</td><td>تغيير النص داخل عنصر</td>
+            <td><span class="code">document.getElementById("p").innerHTML = "Hi";</span></td>
+          </tr>
+          <tr>
+            <td>تغيير قيمة خاصية</td><td>src.</td><td>تغيير صورة أو خاصية</td>
+            <td><span class="code">img.src = "a.jpg";</span></td>
+          </tr>
+          <tr>
+            <td>تغيير تنسيق بالـ CSS عبر JS</td><td>style.</td><td>تغيير تنسيق</td>
+            <td><span class="code">p.style.color = "red";</span></td>
+          </tr>
+          <tr>
+            <td>إخفاء عنصر</td><td>display = "none"</td><td>إخفاء</td>
+            <td><span class="code">div.style.display = "none";</span></td>
+          </tr>
+          <tr>
+            <td>إظهار عنصر</td><td>display = "block"</td><td>إظهار</td>
+            <td><span class="code">div.style.display = "block";</span></td>
+          </tr>
         </tbody>
       </table>
-    </div>
-    <div class="card">
-      <h3>Logical Operators</h3>
+    </section>
+
+    <section id="js-where">
+      <h2>JS: أين نكتب JavaScript</h2>
       <table class="table">
-        <thead><tr><th>المعامل</th><th>المعنى</th></tr></thead>
+        <thead><tr><th>المكان</th><th>الصيغة</th><th>ملاحظة</th></tr></thead>
         <tbody>
-          <tr><td>&amp;&amp;</td><td>AND</td></tr>
-          <tr><td>!</td><td>NOT</td></tr>
+          <tr><td>داخل body</td><td><span class="code">&lt;script&gt;...&lt;/script&gt;</span></td><td>شائع</td></tr>
+          <tr><td>داخل head</td><td><span class="code">&lt;script&gt;...&lt;/script&gt;</span></td><td>ممكن</td></tr>
+          <tr><td>ملف خارجي</td><td><span class="code">&lt;script src="a.js"&gt;&lt;/script&gt;</span></td><td>الأفضل</td></tr>
+          <tr><td>آخر body</td><td>—</td><td>أسرع تحميل</td></tr>
         </tbody>
       </table>
-    </div>
+    </section>
+
+    <section id="js-output-comments">
+      <h2>JS: أساليب إظهار النتائج + التعليقات</h2>
+      <h3>أساليب إظهار النتائج</h3>
+      <table class="table">
+        <thead><tr><th>الطريقة</th><th>الاستخدام</th><th>مثال</th></tr></thead>
+        <tbody>
+          <tr><td>innerHTML</td><td>داخل عنصر HTML</td><td><span class="code">element.innerHTML = "Hello";</span></td></tr>
+          <tr><td>document.write()</td><td>كتابة بالصفحة</td><td><span class="code">document.write(5+5);</span></td></tr>
+          <tr><td>window.alert()</td><td>رسالة منبثقة</td><td><span class="code">alert("Hi");</span></td></tr>
+          <tr><td>console.log()</td><td>فحص الأخطاء</td><td><span class="code">console.log(10);</span></td></tr>
+          <tr><td>window.print()</td><td>طباعة الصفحة</td><td><span class="code">window.print();</span></td></tr>
+        </tbody>
+      </table>
+      <h3>التعليقات في JS</h3>
+      <table class="table">
+        <thead><tr><th>النوع</th><th>الصيغة</th></tr></thead>
+        <tbody>
+          <tr><td>تعليق سطر</td><td><span class="code">// تعليق</span></td></tr>
+          <tr><td>تعليق متعدد</td><td><span class="code">/* تعليق */</span></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="data-types-typeof-expo">
+      <h2>JS: أنواع البيانات + typeof + الصيغة الأسّية</h2>
+      <h3>Data Types أنواع البيانات</h3>
+      <table class="table">
+        <thead><tr><th>النوع</th><th>المثال</th></tr></thead>
+        <tbody>
+          <tr><td>String</td><td><span class="code">"Ali"</span></td></tr>
+          <tr><td>Number</td><td><span class="code">10</span></td></tr>
+          <tr><td>Boolean</td><td><span class="code">true</span></td></tr>
+          <tr><td>Array</td><td><span class="code">["A","B"]</span></td></tr>
+          <tr><td>Object</td><td><span class="code">{ "name":"Ali" }</span></td></tr>
+          <tr><td>Undefined</td><td><span class="code">let x;</span></td></tr>
+          <tr><td>Null</td><td><span class="code">null</span></td></tr>
+        </tbody>
+      </table>
+
+      <div class="grid">
+        <div class="card">
+          <h3>typeof Operator</h3>
+          <table class="table">
+            <thead><tr><th>التعبير</th><th>النتيجة</th></tr></thead>
+            <tbody>
+              <tr><td><span class="code">typeof "Ali"</span></td><td>string</td></tr>
+              <tr><td><span class="code">typeof 10</span></td><td>number</td></tr>
+              <tr><td><span class="code">typeof true</span></td><td>boolean</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card">
+          <h3>Exponential Notation الصيغة الأسّية</h3>
+          <table class="table">
+            <thead><tr><th>الصيغة</th><th>النتيجة</th></tr></thead>
+            <tbody>
+              <tr><td><span class="code">123e5</span></td><td>12300000</td></tr>
+              <tr><td><span class="code">123e-5</span></td><td>0.00123</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="objects-conversion">
+      <h2>JS: الكائنات Objects + التحويل Type Conversion</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>JavaScript Objects</h3>
+          <p class="note">تخزين بيانات على شكل أزواج مفتاح/قيمة.</p>
+          <div class="code">let person = { name: "Ali", age: 20 };</div>
+        </div>
+        <div class="card">
+          <h3>Type Conversion التحويل</h3>
+          <table class="table">
+            <thead><tr><th>التحويل</th><th>المثال</th><th>النتيجة</th></tr></thead>
+            <tbody>
+              <tr><td>String → Number</td><td><span class="code">Number("3.5")</span></td><td>3.5</td></tr>
+              <tr><td>String → Integer</td><td><span class="code">parseInt("10")</span></td><td>10</td></tr>
+              <tr><td>Number → String</td><td><span class="code">String(10)</span></td><td>"10"</td></tr>
+              <tr><td>Boolean → Number</td><td><span class="code">Number(true)</span></td><td>1</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="operators">
+      <h2>JS: المعاملات Operators</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Arithmetic Operators معاملات حسابية</h3>
+          <ul>
+            <li><span class="kbd">+</span> <span class="kbd">-</span> <span class="kbd">*</span> <span class="kbd">/</span> <span class="kbd">%</span></li>
+            <li>الزيادة/النقصان: <span class="kbd">++</span> <span class="kbd">--</span></li>
+            <li>الأس: <span class="kbd">**</span></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Assignment Operators معاملات الإسناد</h3>
+          <ul>
+            <li><span class="kbd">=</span> مثال: <span class="code">x = 5</span></li>
+            <li><span class="kbd">+=</span> مثال: <span class="code">x += 2</span></li>
+            <li><span class="kbd">-=</span> مثال: <span class="code">x -= 2</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="comparisons-logic">
+      <h2>JS: المقارنات Comparison + المنطقية Logical</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Comparison Operators</h3>
+          <table class="table">
+            <thead><tr><th>الوظيفة</th><th>المعامل</th></tr></thead>
+            <tbody>
+              <tr><td>مساواة</td><td><span class="kbd">==</span></td></tr>
+              <tr><td>قيمة + نوع</td><td><span class="kbd">===</span></td></tr>
+              <tr><td>لا يساوي</td><td><span class="kbd">!=</span></td></tr>
+              <tr><td>مقارنة أكبر</td><td><span class="kbd">&gt;</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card">
+          <h3>Logical Operators</h3>
+          <table class="table">
+            <thead><tr><th>المعنى</th><th>المعامل</th></tr></thead>
+            <tbody>
+              <tr><td>AND</td><td><span class="kbd">&amp;&amp;</span></td></tr>
+              <tr><td>NOT</td><td><span class="kbd">!</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="conditionals">
+      <h2>JS: الشروط Conditionals</h2>
+      <table class="table">
+        <thead><tr><th>النوع</th><th>الشروط</th><th>الصيغة</th></tr></thead>
+        <tbody>
+          <tr><td>if</td><td>—</td><td><span class="code">if (cond) { }</span></td></tr>
+          <tr><td>nested if</td><td>—</td><td><span class="code">if () { if () { } }</span></td></tr>
+          <tr><td>else</td><td>—</td><td><span class="code">else { }</span></td></tr>
+          <tr><td>else if</td><td>—</td><td><span class="code">else if (cond) { }</span></td></tr>
+          <tr><td>ternary</td><td>cond ? a : b</td><td><span class="code">cond ? a : b</span></td></tr>
+          <tr><td>switch</td><td>—</td><td><span class="code">switch (x) { }</span></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="loops">
+      <h2>JS: الحلقات Loops</h2>
+      <table class="table">
+        <thead><tr><th>الحلقة</th><th>الصيغة</th></tr></thead>
+        <tbody>
+          <tr><td>for</td><td><span class="code">for (let i = 0; i &lt; 5; i++) { }</span></td></tr>
+          <tr><td>while</td><td><span class="code">while (i &lt; 5) { }</span></td></tr>
+          <tr><td>do while</td><td><span class="code">do { } while (i &lt; 5);</span></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <footer>
+      صفحة مرجعية تعليمية — تُعرض الشرح فقط | Fidaa Muhimed
+    </footer>
   </div>
-</section>
-
-<section id="js-conditionals">
-  <h2>JS: التفرعات Conditionals</h2>
-  <table class="table">
-    <thead><tr><th>النوع</th><th>الصيغة</th></tr></thead>
-    <tbody>
-      <tr><td>if</td><td><span class="code">if (cond) { }</span></td></tr>
-      <tr><td>nested if</td><td><span class="code">if () { if () { } }</span></td></tr>
-      <tr><td>else</td><td><span class="code">else { }</span></td></tr>
-      <tr><td>else if</td><td><span class="code">else if (cond) { }</span></td></tr>
-      <tr><td>ternary</td><td><span class="code">cond ? a : b</span></td></tr>
-      <tr><td>switch</td><td><span class="code">switch(x) { }</span></td></tr>
-    </tbody>
-  </table>
-</section>
-
-<section id="js-loops">
-  <h2>JS: الحلقات Loops</h2>
-  <table class="table">
-    <thead><tr><th>الحلقة</th><th>الصيغة</th></tr></thead>
-    <tbody>
-      <tr><td>for</td><td><span class="code">for (let i=0; i&lt;5; i++) { }</span></td></tr>
-      <tr><td>while</td><td><span class="code">while (i&lt;5) { }</span></td></tr>
-      <tr><td>do while</td><td><span class="code">do { } while (i&lt;5);</span></td></tr>
-    </tbody>
-  </table>
-</section>
-
-<section id="js-dom">
-  <h2>JS: التعديل على عناصر HTML (DOM)</h2>
-  <table class="table">
-    <thead><tr><th>المطلوب</th><th>الأمر</th><th>الوظيفة</th><th>مثال</th></tr></thead>
-    <tbody>
-      <tr><td>تغيير محتوى عنصر</td><td>innerHTML</td><td>تغيير النص داخل عنصر</td><td><span class="code">document.getElementById("p").innerHTML = "Hi";</span></td></tr>
-      <tr><td>تغيير قيمة خاصية</td><td>src</td><td>تغيير صورة أو خاصية</td><td><span class="code">img.src = "a.jpg";</span></td></tr>
-      <tr><td>تغيير تنسيق</td><td>style</td><td>تغيير CSS عبر JS</td><td><span class="code">p.style.color = "red";</span></td></tr>
-      <tr><td>إخفاء عنصر</td><td>display=none</td><td>إخفاء</td><td><span class="code">div.style.display = "none";</span></td></tr>
-      <tr><td>إظهار عنصر</td><td>display=block</td><td>إظهار</td><td><span class="code">div.style.display = "block";</span></td></tr>
-    </tbody>
-  </table>
-</section>
-
-<footer>
-  <p class="note">صفحة مرجعية تعليمية — للعرض والشرح فقط، بدون تنفيذ فعلي للكود | Fidaa Muhimed</p>
-</footer>
-
-</div>
 </body>
 </html>
