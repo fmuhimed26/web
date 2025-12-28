@@ -3,166 +3,142 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>مرجع سريع: شرح مبسّط لـ CSS (مع أمثلة مكمّلة للألوان)</title>
-<style>
-:root{
-  --bg:#0f172a;
-  --card:#111827;
-  --text:#e5e7eb;
-  --muted:#94a3b8;
-  --accent:#38bdf8;
-  --accent-2:#22c55e;
-  --border:#1f2937;
-  --code-bg:#0b1020;
-  --heading:#fff;
-}
-*{box-sizing:border-box}
-html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:"Cairo","Segoe UI",system-ui,-apple-system,Arial,sans-serif;line-height:1.7}
-a{color:var(--accent);text-decoration:none}
-a:hover{text-decoration:underline}
-.container{max-width:1100px;margin:0 auto;padding:24px}
-header{padding:24px 0 0 0}
-h1{font-size:2rem;margin:0;color:var(--heading)}
-.lead{color:var(--muted);margin-top:8px}
-.nav{
-  display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 28px;
-}
-.nav a{
-  background:var(--card);border:1px solid var(--border);padding:8px 12px;border-radius:10px;color:var(--text);font-size:.95rem;
-}
-section{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:16px;
-  padding:18px;
-  margin:16px 0;
-}
-h2{margin:0 0 12px 0;font-size:1.35rem;color:var(--heading)}
-h3{margin:16px 0 8px 0;font-size:1.1rem;color:var(--heading)}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
-.card{
-  background:#0e1527;border:1px solid var(--border);border-radius:12px;padding:12px
-}
-.table{width:100%;border-collapse:collapse;margin-top:8px;overflow-x:auto;display:block;}
-.table th,.table td{border:1px solid var(--border);padding:8px;text-align:right;font-size:.95rem;white-space:nowrap}
-.table th{background:#0e1527;color:#cbd5e1}
-.k{color:#93c5fd} /* keywords / properties */
-.v{color:#86efac} /* values */
-.sel{color:#fca5a5} /* selectors */
-.code{
-  background:var(--code-bg);
-  border:1px solid var(--border);
-  border-radius:12px;
-  padding:12px;
-  overflow:auto;
-  direction:ltr;
-  text-align:left;
-  font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-  font-size:.95rem;
-  line-height:1.6;
-  color:#e6edf3;
-}
-.note{color:var(--muted);font-size:.95rem}
-.pill{
-  display:inline-block;background:#0e1527;border:1px solid var(--border);
-  color:#cbd5e1;border-radius:999px;padding:4px 10px;margin:0 6px 6px 0;font-size:.9rem
-}
-.demo-row{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  align-items:center;
-}
-.swatch{
-  width:80px;height:40px;border-radius:8px;border:1px solid var(--border)
-}
-.legend{font-size:.9rem;color:#cbd5e1}
-.box-model{
-  display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start
-}
-.bm-diagram{
-  --c:#1f2937;--p:#334155;--b:#475569;--m:#64748b;
-  display:grid;place-items:center;height:220px;border-radius:12px;background:#0b1222;position:relative
-}
-.bm-layer{position:absolute;border-radius:10px}
-.bm-margin{inset:10px;border:2px dashed var(--m)}
-.bm-border{inset:30px;border:2px solid var(--b)}
-.bm-padding{inset:50px;border:2px solid var(--p)}
-.bm-content{inset:70px;background:#0f172a;border:1px solid var(--c);display:flex;align-items:center;justify-content:center;color:#cbd5e1}
-.kbd{
-  background:#0e1527;border:1px solid var(--border);padding:2px 6px;border-radius:6px;font-size:.85rem;color:#cbd5e1
-}
-footer{color:#94a3b8;text-align:center;padding:24px 0}
+  <title>مرجع سريع: شرح مبسّط لـ CSS و JS</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #111827;
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-2: #22c55e;
+      --border: #1f2937;
+      --code-bg: #0b1020;
+      --heading: #fff;
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Cairo", "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+      line-height: 1.7;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 24px; }
+    header { padding: 24px 0 0 0; }
+    h1 { font-size: 2rem; margin: 0; color: var(--heading); }
+    .lead { color: var(--muted); margin-top: 8px; }
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 18px 0 28px;
+    }
+    .nav a {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 8px 12px;
+      border-radius: 10px;
+      color: var(--text);
+      font-size: .95rem;
+    }
+    section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px;
+      margin: 16px 0;
+    }
+    h2 { margin: 0 0 12px 0; font-size: 1.35rem; color: var(--heading); }
+    h3 { margin: 16px 0 8px 0; font-size: 1.1rem; color: var(--heading); }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
+    .card {
+      background: #0e1527;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px;
+    }
+    .table { width: 100%; border-collapse: collapse; margin-top: 8px; overflow-x: auto; display: block; }
+    .table th, .table td {
+      border: 1px solid var(--border);
+      padding: 8px;
+      text-align: right;
+      font-size: .95rem;
+      white-space: nowrap;
+    }
+    .table th { background: #0e1527; color: #cbd5e1; }
+    .k { color: #93c5fd; }
+    .v { color: #86efac; }
+    .sel { color: #fca5a5; }
+    .code {
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px;
+      overflow: auto;
+      direction: ltr;
+      text-align: left;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: .95rem;
+      line-height: 1.6;
+      color: #e6edf3;
+    }
+    .note { color: var(--muted); font-size: .95rem; }
+    .pill {
+      display: inline-block;
+      background: #0e1527;
+      border: 1px solid var(--border);
+      color: #cbd5e1;
+      border-radius: 999px;
+      padding: 4px 10px;
+      margin: 0 6px 6px 0;
+      font-size: .9rem;
+    }
+    .demo-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+    .swatch { width: 80px; height: 40px; border-radius: 8px; border: 1px solid var(--border); }
+    .legend { font-size: .9rem; color: #cbd5e1; }
+    .box-model { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-items: start; }
+    .bm-diagram {
+      --c: #1f2937; --p: #334155; --b: #475569; --m: #64748b;
+      display: grid; place-items: center; height: 220px; border-radius: 12px; background: #0b1222; position: relative;
+    }
+    .bm-layer { position: absolute; border-radius: 10px; }
+    .bm-margin { inset: 10px; border: 2px dashed var(--m); }
+    .bm-border { inset: 30px; border: 2px solid var(--b); }
+    .bm-padding { inset: 50px; border: 2px solid var(--p); }
+    .bm-content { inset: 70px; background: #0f172a; border: 1px solid var(--c); display: flex; align-items: center; justify-content: center; color: #cbd5e1; }
+    .kbd {
+      background: #0e1527; border: 1px solid var(--border); padding: 2px 6px; border-radius: 6px; font-size: .85rem; color: #cbd5e1;
+    }
+    footer { color: #94a3b8; text-align: center; padding: 24px 0; }
 
-/* ======= Responsive CSS ======= */
-@media (max-width: 768px) {
-  .grid {
-    grid-template-columns: 1fr; /* عمود واحد */
-  }
-  .demo-row {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  
-  .swatch {
-    width: 60px;
-    height: 30px;
-    max-width: 100%;
-  }
-  .legend {
-    font-size: 0.8rem;
-  }
-  header h1 {
-    font-size: 1.5rem;
-  }
-  section {
-    padding: 12px;
-  }
-  .nav {
-    flex-direction: column;
-  }
-  .nav a {
-    width: 100%;
-    text-align: center;
-  }
-  .box-model {
-    grid-template-columns: 1fr; /* رسم نموذج الصندوق عمودي */
-  }
-  .table {
-    font-size: 0.85rem;
-  }
-  .code {
-    font-size: 0.85rem;
-  }
-}
-
-@media (max-width: 480px) {
-  body {
-    font-size: 14px;
-  }
-  h1 { font-size: 1.2rem; }
-  h2 { font-size: 1.1rem; }
-  h3 { font-size: 1rem; }
-  .table th, .table td {
-    font-size: 0.8rem;
-    padding: 6px;
-  }
-  .kbd {
-    font-size: 0.75rem;
-  }
-  .pill {
-    padding: 3px 8px;
-    font-size: 0.8rem;
-  }
-  .swatch {
-    width: 50px;
-    height: 25px;
-  }
-  .legend {
-    font-size: 0.7rem;
-  }
-}
-</style>
+    @media (max-width: 768px) {
+      .grid { grid-template-columns: 1fr; }
+      .demo-row { flex-direction: column; align-items: flex-start; }
+      .swatch { width: 60px; height: 30px; max-width: 100%; }
+      .legend { font-size: .8rem; }
+      header h1 { font-size: 1.5rem; }
+      section { padding: 12px; }
+      .nav { flex-direction: column; }
+      .nav a { width: 100%; text-align: center; }
+      .box-model { grid-template-columns: 1fr; }
+      .table, .code { font-size: .85rem; }
+    }
+    @media (max-width: 480px) {
+      body { font-size: 14px; }
+      h1 { font-size: 1.2rem; }
+      h2 { font-size: 1.1rem; }
+      h3 { font-size: 1rem; }
+      .table th, .table td { font-size: .8rem; padding: 6px; }
+      .kbd { font-size: .75rem; }
+      .pill { padding: 3px 8px; font-size: .8rem; }
+      .swatch { width: 50px; height: 25px; }
+      .legend { font-size: .7rem; }
+    }
+  </style>
 </head>
 <body>
   <div class="container">
@@ -651,3 +627,4 @@ footer{color:#94a3b8;text-align:center;padding:24px 0}
   </div>
 </body>
 </html>
+
