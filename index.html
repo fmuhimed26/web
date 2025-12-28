@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>مرجع سريع CSS, JS</title>
+  <title>مرجع سريع: شرح مبسّط لـ CSS (مع أمثلة مكمّلة للألوان)</title>
   <style>
     :root{
       --bg:#0f172a;
@@ -23,6 +23,7 @@
     .container{max-width:1100px;margin:0 auto;padding:24px}
     header{padding:24px 0 0 0}
     h1{font-size:2rem;margin:0;color:var(--heading)}
+    .lead{color:var(--muted);margin-top:8px}
     .nav{
       display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 28px;
     }
@@ -87,12 +88,64 @@
       background:#0e1527;border:1px solid var(--border);padding:2px 6px;border-radius:6px;font-size:.85rem;color:#cbd5e1
     }
     footer{color:#94a3b8;text-align:center;padding:24px 0}
+
+    /* ======= Responsive CSS ======= */
+    @media (max-width: 768px) {
+      .grid {
+        grid-template-columns: 1fr; /* عمود واحد على الشاشات المتوسطة والصغيرة */
+      }
+      .demo-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .swatch {
+        width: 100%;
+        max-width: 240px;
+        height: 40px;
+      }
+      header h1 {
+        font-size: 1.5rem;
+      }
+      section {
+        padding: 12px;
+      }
+      .nav {
+        flex-direction: column;
+      }
+      .nav a {
+        width: 100%;
+        text-align: center;
+      }
+      .box-model {
+        grid-template-columns: 1fr; /* رسم نموذج الصندوق عمودي */
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        font-size: 14px;
+      }
+      h1 { font-size: 1.2rem; }
+      h2 { font-size: 1.1rem; }
+      h3 { font-size: 1rem; }
+      .table th, .table td {
+        font-size: 0.85rem;
+        padding: 6px;
+      }
+      .kbd {
+        font-size: 0.75rem;
+      }
+      .pill {
+        padding: 3px 8px;
+        font-size: 0.8rem;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <header>
-      <h1>مرجع سريع CSS, JS</h1>
+      <h1>مرجع مبسّط لـ CSS مع أمثلة توضيحية</h1>
     </header>
 
     <nav class="nav" aria-label="تنقل الأقسام">
@@ -114,7 +167,6 @@
       <a href="#conditionals">التفرّعات</a>
       <a href="#loops">الحلقات</a>
     </nav>
-
     <section id="selectors">
       <h2>المحددات Selectors</h2>
       <div class="grid">
@@ -576,6 +628,7 @@
   </div>
 </body>
 </html>
+
 
 
 
