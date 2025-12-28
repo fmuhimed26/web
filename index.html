@@ -43,8 +43,8 @@
     .card{
       background:#0e1527;border:1px solid var(--border);border-radius:12px;padding:12px
     }
-    .table{width:100%;border-collapse:collapse;margin-top:8px}
-    .table th,.table td{border:1px solid var(--border);padding:8px;text-align:right;font-size:.95rem}
+    .table{width:100%;border-collapse:collapse;margin-top:8px;overflow-x:auto;display:block;}
+    .table th,.table td{border:1px solid var(--border);padding:8px;text-align:right;font-size:.95rem;white-space:nowrap}
     .table th{background:#0e1527;color:#cbd5e1}
     .k{color:#93c5fd} /* keywords / properties */
     .v{color:#86efac} /* values */
@@ -92,7 +92,7 @@
     /* ======= Responsive CSS ======= */
     @media (max-width: 768px) {
       .grid {
-        grid-template-columns: 1fr; /* عمود واحد على الشاشات المتوسطة والصغيرة */
+        grid-template-columns: 1fr; /* عمود واحد */
       }
       .demo-row {
         flex-direction: column;
@@ -119,6 +119,12 @@
       .box-model {
         grid-template-columns: 1fr; /* رسم نموذج الصندوق عمودي */
       }
+      .table {
+        font-size: 0.85rem;
+      }
+      .code {
+        font-size: 0.85rem;
+      }
     }
 
     @media (max-width: 480px) {
@@ -129,7 +135,7 @@
       h2 { font-size: 1.1rem; }
       h3 { font-size: 1rem; }
       .table th, .table td {
-        font-size: 0.85rem;
+        font-size: 0.8rem;
         padding: 6px;
       }
       .kbd {
@@ -628,6 +634,7 @@
   </div>
 </body>
 </html>
+
 
 
 
