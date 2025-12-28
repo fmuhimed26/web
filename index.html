@@ -40,7 +40,7 @@
     .k { color: #93c5fd; }
     .v { color: #86efac; }
     .sel { color: #fca5a5; }
-    .code { background: var(--code-bg); border: 1px solid var(--border); border-radius: 12px; padding: 12px; overflow: auto; direction: ltr; text-align: left; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace; font-size: .95rem; line-height: 1.6; color: #e6edf3; width: 100%; }
+    .code { padding: 12px; overflow: auto; direction: ltr; text-align: left; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace; font-size: .95rem; line-height: 1.6; color: #e6edf3; width: 100%; }
     .note { color: var(--muted); font-size: .95rem; }
     .pill { display: inline-block; background: #0e1527; border: 1px solid var(--border); color: #cbd5e1; border-radius: 999px; padding: 4px 10px; margin: 0 6px 6px 0; font-size: .9rem; }
     .swatch { width: 100%; height: 40px; border-radius: 8px; border: 1px solid var(--border); }
@@ -51,7 +51,7 @@
     .bm-border { inset: 30px; border: 2px solid var(--b); }
     .bm-padding { inset: 50px; border: 2px solid var(--p); }
     .bm-content { inset: 70px; background: #0f172a; border: 1px solid var(--c); display: flex; align-items: center; justify-content: center; color: #cbd5e1; }
-    .kbd { background: #0e1527; border: 1px solid var(--border); padding: 2px 6px; border-radius: 6px; font-size: .85rem; color: #cbd5e1; }
+    .kbd { border: 1px solid var(--border); padding: 2px 6px; border-radius: 6px; font-size: .85rem; color: #cbd5e1; }
     footer { color: #94a3b8; text-align: center; padding: 24px 0; }
 
     /* responsive adjustments */
@@ -359,15 +359,15 @@
         <tbody>
           <tr>
             <td>تغيير محتوى عنصر</td><td>innerHTML</td><td>تغيير النص داخل عنصر</td>
-            <td><span class="code">;document.getElementById("p").innerHTML = "Hi"</span></td>
+            <td><span class="code">;"document.getElementById("p").innerHTML = "Hi</span></td>
           </tr>
           <tr>
             <td>تغيير قيمة خاصية</td><td>src.</td><td>تغيير صورة أو خاصية</td>
-            <td><span class="code">;img.src = "a.jpg"</span></td>
+            <td><span class="code">;"img.src = "a.jpg</span></td>
           </tr>
           <tr>
             <td>تغيير تنسيق بالـ CSS عبر JS</td><td>style.</td><td>تغيير تنسيق</td>
-            <td><span class="code">;p.style.color = "red"</span></td>
+            <td><span class="code">;"p.style.color = "red</span></td>
           </tr>
           <tr>
             <td>إخفاء عنصر</td><td>"display = "none</td><td>إخفاء</td>
@@ -400,7 +400,7 @@
       <table class="table">
         <thead><tr><th>الطريقة</th><th>الاستخدام</th><th>مثال</th></tr></thead>
         <tbody>
-          <tr><td>innerHTML</td><td>داخل عنصر HTML</td><td><span class="code">;element.innerHTML = "Hello"</span></td></tr>
+          <tr><td>innerHTML</td><td>داخل عنصر HTML</td><td><span class="code">;"element.innerHTML = "Hello</span></td></tr>
           <tr><td>document.write()</td><td>كتابة بالصفحة</td><td><span class="code">;document.write(5+5)</span></td></tr>
           <tr><td>window.alert()</td><td>رسالة منبثقة</td><td><span class="code">;alert("Hi")</span></td></tr>
           <tr><td>console.log()</td><td>فحص الأخطاء</td><td><span class="code">;console.log(10)</span></td></tr>
@@ -439,7 +439,7 @@
           <table class="table">
             <thead><tr><th>التعبير</th><th>النتيجة</th></tr></thead>
             <tbody>
-              <tr><td><span class="code">typeof "Ali"</span></td><td>string</td></tr>
+              <tr><td><span class="code">"typeof "Ali</span></td><td>string</td></tr>
               <tr><td><span class="code">typeof 10</span></td><td>number</td></tr>
               <tr><td><span class="code">typeof true</span></td><td>boolean</td></tr>
             </tbody>
